@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int n= secret.size();
+        int x{0},y{0};
+        int g[10]={0},s[10]={0};
+        for (int i=0; i<n; i++){
+            if(secret[i]==guess[i])x++;
+            else{
+                ++g[guess[i]-'0'];
+                ++s[secret[i]-'0'];
+            }
+        }
+        for(int i=0; i<10; i++){
+            y+=min(g[i],s[i]);
+        }
+        string str;
+        // return to_string(x)+"A"+to_string(y)+"B";
+        str.append(to_string(x));
+        str.append("A");
+        str.append(to_string(y));
+        str.append("B");
+        return str;
+    }
+};
